@@ -40,12 +40,11 @@ const IndexPage = () => {
 
   return (
     <View style={styles.container}>
+      {/* Centered Loading Indicator */}
       {isLoading && (
-        <ActivityIndicator
-          size="large"
-          color="#0000ff"
-          style={styles.loader}
-        />
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
       )}
       <WebView
         ref={(ref) => (webViewRef.current = ref)}
@@ -64,11 +63,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  loader: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    zIndex: 1,
+  loadingContainer: {
+    ...StyleSheet.absoluteFillObject, // Covers the entire screen
+    justifyContent: 'center', // Center vertically
+    alignItems: 'center', // Center horizontally
+    backgroundColor: '#fff', // Optional: Add a background color for better visibility
+    zIndex: 1, // Ensure it appears above the WebView
   },
 });
 
